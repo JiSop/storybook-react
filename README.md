@@ -1,12 +1,9 @@
 # Storybook React
 
-
-
 ### Start
 
 ```bash
-$ yarn storybook
+  $ yarn sb
 ```
 
-Open <http://localhost:3000> to view it in the browser.
-
+Open <http://localhost:9009> to view it in the browser.
