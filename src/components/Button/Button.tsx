@@ -2,12 +2,11 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import Colors from '../../styles/Colors'
 
-type ButtonProps = {
-  children: React.ReactNode,
-  disabled?: boolean
-  fullWidth?: boolean
-  roundShape?: boolean,
-  outline?: boolean,
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  hex?: string;
+  outline?: boolean;
+  fullWidth?: boolean;
+  roundShape?: boolean;
 };
 
 const StyledButton = styled.button<ButtonProps>`
@@ -15,19 +14,21 @@ const StyledButton = styled.button<ButtonProps>`
   font-weight: 600;
   letter-spacing: 1.25px;
   text-align: center;
-  border: none;
+  border: ${({ outline, hex }) => outline ? `1px solid ${hex}` : 'none'};
   border-radius: ${({ roundShape }) => roundShape ? '28px' : '4px'};
   padding: 0.5rem 1rem;
   min-height: 36px;
   min-width: 96px;
   outline: none;
   cursor: pointer;
+  background-color: white;
   &:hover {
-    background-color: ${Colors.primaryHover};
+    /* HEX 값 뒤에 투명도를 써서 지정 가능 (사실은 템플릿 리터럴이기 때문에 가능하다) */
+    background-color: ${({ hex }) => hex ? hex : '#37352f'}0a;
   }
   &,
   &:visited {
-    color: ${Colors.primary};
+    color: ${({ hex }) => hex ? hex : '#37352f'};
   }
   &:disabled {
     &,
@@ -45,46 +46,34 @@ const StyledButton = styled.button<ButtonProps>`
       padding-bottom: 0.5rem;
       width: 100%;
     `}
-  ${({ outline }) => outline &&
-    css`
-      background-color: ${Colors.surface};
-      border: 1px solid ${Colors.primary};
-      min-height: 24px;
-      &,
-      &:hover,
-      &:visited {
-        box-shadow: none;
-        color: ${Colors.primary};
-      }
-      &:hover {
-        background-color: ${Colors.primaryHover};
-      }
-    `}
 `;
 
 /**
  * <Button /> 랜더링 (default: text style)
- * @param {string} [color] - 버튼의 색상 지정
+ * @param {string} [hex] - 버튼색 지정 HEX
  * @param {boolean} [roundShape] - 둥근 모양의 버튼
  * @param {boolean} [outline] - 아웃라인 스타일 버튼
  * @param {boolean} [fullWidth] - 버튼의 크기 최대 넓이
  */
-export const Button: React.FC<ButtonProps> = props => {
+export const Button = (props: ButtonProps) => {
   const {
-  children,
-  roundShape,
-  outline,
-  fullWidth,
-  disabled,
-} = props;
+    hex,
+    outline,
+    fullWidth,
+    roundShape
+  } = props;
   return (
     <StyledButton
+      {...props}
+      hex={hex}
       outline={outline}
       fullWidth={fullWidth}
       roundShape={roundShape}
-      disabled={disabled}
-    >
-      {children}
-    </StyledButton>
+    />
   );
 };
+
+// Button.defaultProps = {
+//   hex: '#37352f',
+// };
+// export { Button };
