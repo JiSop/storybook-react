@@ -23,7 +23,6 @@ const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   background-color: white;
   &:hover {
-    /* HEX 값 뒤에 투명도를 써서 지정 가능 (사실은 템플릿 리터럴이기 때문에 가능하다) */
     background-color: ${({ hex }) => hex ? hex : '#37352f'}0a;
   }
   &,
