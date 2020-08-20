@@ -1,7 +1,7 @@
 import React from 'react';
-// import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import { Button } from '../components/Button';
+import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+// import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Button',

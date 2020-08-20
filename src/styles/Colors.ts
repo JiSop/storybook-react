@@ -1,10 +1,6 @@
 export default {
   surface: "#ffffff",
   primary: "#ff8a3d",
-  primaryFocused: "#ff8a3d4c",
-  primaryPressed: "#ff8a3d19",
-  primarySelect: "#ff8a3d14",
-  primaryHover: "#ff8b3d0a",
   red: "#eb5757",
   green: "#1ed761",
   gray: [
@@ -26,4 +22,8 @@ export default {
   outline: "#0000001e",
   blackHover: "#0000000a",
   blackDragged: "#00000014",
+  primaryFocused: "#ff8a3d4c",
+  primaryPressed: "#ff8a3d19",
+  primarySelect: "#ff8a3d14",
+  primaryHover: "#ff8b3d0a",
 };
